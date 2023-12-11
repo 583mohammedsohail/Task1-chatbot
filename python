@@ -1,0 +1,39 @@
+import re
+import random
+
+def simple_chatbot():
+    greetings_patterns = ['hi', 'hello', 'hey']
+    farewells_patterns = ['bye', 'goodbye', 'see you']
+    weather_patterns = ['weather', 'forecast']
+    joke_patterns = ['joke', 'tell me a joke']
+    compliment_patterns = ['compliment', 'you are great']
+    responses = {
+        'greetings': ["Hi there! How can I assist you today?", "Hello! What can I do for you?", "Hey! How can I help?"],
+        'farewells': ["Goodbye! Have a great day!", "See you later!", "Until next time!"],
+        'weather': ["I'm sorry, I don't have weather information at the moment."],
+        'joke': ["Why did the computer go to therapy? It had too many bytes of emotional baggage!"],
+        'compliment': ["Thank you! You're pretty awesome too!", "You're making me blush!"]
+    }
+    conversation_history = []
+    print("Chatbot: Hi! I'm your friendly chatbot. Type 'exit' to end the conversation.")
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() == 'exit':
+            print("Chatbot: Goodbye! It was nice chatting with you.")
+            break
+        conversation_history.append(user_input)
+        user_input = user_input.lower()
+        if any(pattern in user_input for pattern in greetings_patterns):
+            response = random.choice(responses['greetings'])
+        elif any(pattern in user_input for pattern in farewells_patterns):
+            response = random.choice(responses['farewells'])
+        elif any(pattern in user_input for pattern in weather_patterns):
+            response = random.choice(responses['weather'])
+        elif any(pattern in user_input for pattern in joke_patterns):
+            response = random.choice(responses['joke'])
+        elif any(pattern in user_input for pattern in compliment_patterns):
+            response = random.choice(responses['compliment'])
+        else:
+            response = "I'm sorry, I didn't understand that. Can you please rephrase or ask another question?"
+        print("Chatbot:", response)
+simple_chatbot()
